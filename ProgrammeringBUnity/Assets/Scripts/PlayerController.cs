@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     //Vi sætter alle variablerne til vores bevægelse af spilleren.
     private float Vertical;
@@ -79,6 +79,12 @@ public class PlayerMovement : MonoBehaviour
     void Attack()
     {
         anim.SetTrigger("Attack");
+    }
+
+    public void FreezePlayer()
+    {
+        rb.constraints = RigidbodyConstraints2D.FreezePosition;
+        rb.velocity = Vector2.zero;
     }
 
     public void Death()
