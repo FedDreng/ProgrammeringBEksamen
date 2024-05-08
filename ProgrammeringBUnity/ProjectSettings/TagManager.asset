@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Enemy
   - Weapon
+  - Collectible
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - 

@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     Animator anim;
     SpriteRenderer spriteRenderer;
 
+    int playerHealth;
+
     // vi laver 2 float variabler der skal styre hvor lang tid der skal gå mellem hvert angreb.
     [SerializeField] float timeBetweenAttack;
     private float attackTimeCounter;
@@ -29,6 +31,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        playerHealth = gameObject.GetComponent<PlayerHealth>().playerHealth;
     }
 
     private void Update()
@@ -49,8 +52,7 @@ public class PlayerController : MonoBehaviour
         /*hvis man klikker på venstreklik, bliver attackfunktionen spillet
         hvis attacTimeCounter er højere eller ligmed timeBetween Attack */
         if (Input.GetKeyDown(KeyCode.Mouse0) && attackTimeCounter >= timeBetweenAttack)
-        {
-            attackTimeCounter = 0;
+        {   
             Attack();
         }
 
@@ -78,15 +80,18 @@ public class PlayerController : MonoBehaviour
     //Attack() funktionen får sætter en trigger til at være sand, så spilleren slår
     void Attack()
     {
+        attackTimeCounter = 0;
         anim.SetTrigger("Attack");
     }
 
+    //FreezePlayer() funktionen låser spilleren, så man ikke kan bevæge sig.
     public void FreezePlayer()
     {
         rb.constraints = RigidbodyConstraints2D.FreezePosition;
         rb.velocity = Vector2.zero;
     }
 
+    //Death() funktionen loader scenen "Level" for at starte spillet forfra.
     public void Death()
     {
         SceneManager.LoadScene("Level");
@@ -118,10 +123,6 @@ public class PlayerController : MonoBehaviour
         {
             spriteRenderer.flipX = false;
         }
-
-        if (gameObject.GetComponent<PlayerHealth>().playerHealth <= 0)
-        {
-            anim.SetTrigger("Dead");
-        }
     }
+
 }
