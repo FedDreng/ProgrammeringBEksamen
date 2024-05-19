@@ -6,6 +6,8 @@ using UnityEngine.U2D;
 
 public class GridNew : MonoBehaviour
 {
+
+    public bool displayGridGizmos;
     public LayerMask unwalkableMask;
     public Vector2 gridWorldSize;
     public float nodeSize;
@@ -14,12 +16,20 @@ public class GridNew : MonoBehaviour
 
     int gridSizeX, gridSizeY;
 
-    private void Start()
+    private void Awake()
     {
         gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeSize);
         gridSizeY = Mathf.RoundToInt(gridWorldSize.y / nodeSize);
 
         CreateGrid();
+    }
+
+    public int MaxSize
+    {
+        get
+        {
+            return gridSizeX * gridSizeY;
+        }
     }
 
     void CreateGrid()
@@ -33,9 +43,35 @@ public class GridNew : MonoBehaviour
             {
                 Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeSize) + Vector3.up * (y * nodeSize);
                 bool walkable = !(Physics2D.OverlapBox(worldPoint, Vector2.one * nodeSize,0, unwalkableMask));
-                grid[x, y] = new Node(walkable, worldPoint);
+                grid[x, y] = new Node(walkable, worldPoint, x,y);
             }
         }
+    }
+
+    public List<Node> GetNeighbours(Node node)
+    {
+        List<Node> neighbours = new List<Node>();
+
+        for (int x = -1; x <= 1; x++)
+        {
+            for (int y = -1; y <= 1; y++)
+            {
+                if(x == 0 && y == 0)
+                {
+                    continue;
+                }
+
+                int checkX = node.gridX + x;
+                int checkY = node.gridY + y;
+
+                if(checkX >= 0 && checkX < gridSizeX && checkY >= 0 && checkY < gridSizeY)
+                {
+                    neighbours.Add(grid[checkX, checkY]);
+                }
+            }
+        }
+
+        return neighbours;
     }
 
     public Node NodeFromWorldPoint(Vector3 worldPos)
@@ -51,18 +87,19 @@ public class GridNew : MonoBehaviour
         return grid[x, y];
     }
 
-
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(transform.position, gridWorldSize);
 
-        if(grid != null)
         {
-
-            foreach (Node n in grid)
+            if (grid != null && displayGridGizmos)
             {
-                Gizmos.color = (n.walkable)?Color.white:Color.red;
-                Gizmos.DrawCube(n.worldPos, Vector3.one * (nodeSize - .1f));
+
+                foreach (Node n in grid)
+                {
+                    Gizmos.color = (n.walkable) ? Color.white : Color.red;
+                    Gizmos.DrawCube(n.worldPos, Vector3.one * (nodeSize - .1f));
+                }
             }
         }
     }
