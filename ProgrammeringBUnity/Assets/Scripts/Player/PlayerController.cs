@@ -18,8 +18,6 @@ public class PlayerController : MonoBehaviour
     Animator anim;
     SpriteRenderer spriteRenderer;
 
-    int playerHealth;
-
     // vi laver 2 float variabler der skal styre hvor lang tid der skal gå mellem hvert angreb.
     [SerializeField] float timeBetweenAttack;
     private float attackTimeCounter;
@@ -31,7 +29,6 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        playerHealth = gameObject.GetComponent<PlayerHealth>().playerHealth;
     }
 
     private void Update()
