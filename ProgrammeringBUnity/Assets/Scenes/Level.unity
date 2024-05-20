@@ -3755,6 +3755,82 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &271905349
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 271905353}
+  - component: {fileID: 271905352}
+  - component: {fileID: 271905351}
+  - component: {fileID: 271905350}
+  m_Layer: 0
+  m_Name: A*
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &271905350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271905349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b4c010a6a2decf4f818a866f5d56dcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &271905351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271905349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4af1ac444b3e2c3469d1b740d78e69b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &271905352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271905349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3749a4a9cf676e640bff97aa7209da10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayGridGizmos: 1
+  unwalkableMask:
+    serializedVersion: 2
+    m_Bits: 64
+  gridWorldSize: {x: 30, y: 9.7}
+  nodeSize: 0.16
+--- !u!4 &271905353
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271905349}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3966,6 +4042,7 @@ GameObject:
   - component: {fileID: 1120696491}
   - component: {fileID: 1120696494}
   - component: {fileID: 1120696495}
+  - component: {fileID: 1120696496}
   m_Layer: 0
   m_Name: BlueSlime
   m_TagString: Enemy
@@ -4090,6 +4167,20 @@ MonoBehaviour:
   health: 0
   Damage: 0
   enemyType: 
+--- !u!114 &1120696496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120696490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af869010bd815114d968f0a1df171af8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 3667521777218053795}
+  speed: 1.5
 --- !u!1 &1339371655
 GameObject:
   m_ObjectHideFlags: 0
@@ -4632,7 +4723,7 @@ GameObject:
   - component: {fileID: 2107827948}
   - component: {fileID: 2107827947}
   - component: {fileID: 2107827946}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5689,10 +5780,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d0f79692b1715d408f69bb212e23e04, type: 3}
+--- !u!4 &3667521777218053795 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6483631740641489756, guid: 6d0f79692b1715d408f69bb212e23e04, type: 3}
+  m_PrefabInstance: {fileID: 3667521777218053794}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 271905353}
   - {fileID: 519420032}
   - {fileID: 3667521777218053794}
   - {fileID: 1844863868}
