@@ -13,16 +13,13 @@ public class Unit : MonoBehaviour
 
     private void Start()
     {
+        if(target == null)
+        {
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+
         //PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
         StartCoroutine(CallFunctionEveryThreeSeconds());
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
-        }
     }
 
     IEnumerator CallFunctionEveryThreeSeconds()
@@ -31,7 +28,7 @@ public class Unit : MonoBehaviour
         {
             print("called func");
             PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(2.5f);
         }
     }
 

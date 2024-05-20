@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    //FDV addition: public canAttack bool (brugt til dialogue script)
+    public bool canAttack;
+
     //Vi sætter alle variablerne til vores bevægelse af spilleren.
     private float Vertical;
     private float Horizontal;
@@ -48,9 +51,13 @@ public class PlayerController : MonoBehaviour
 
         /*hvis man klikker på venstreklik, bliver attackfunktionen spillet
         hvis attacTimeCounter er højere eller ligmed timeBetween Attack */
-        if (Input.GetKeyDown(KeyCode.Mouse0) && attackTimeCounter >= timeBetweenAttack)
-        {   
-            Attack();
+        //FDV addition: if(canAttack) -> gør Tobs' kode
+        if (canAttack)
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse0) && attackTimeCounter >= timeBetweenAttack)
+            {
+                Attack();
+            }
         }
 
         // vi laver en normaliseret vektor baseret på hvilken retning spilleren prøver at bevæge sig

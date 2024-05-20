@@ -15,7 +15,7 @@ public class FriendAIPathfinding : MonoBehaviour
     [SerializeField] Vector3[] Waypoints;
 
     [SerializeField] GameObject ChatPrefab;
- 
+
 
     private void Awake()
     {
@@ -26,6 +26,17 @@ public class FriendAIPathfinding : MonoBehaviour
 
     void Update()
     {
+        if (TalkingToPlayer)
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                print("did thing!");
+                TalkingToPlayer = false;
+                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().canAttack = true;
+                Destroy(transform.GetChild(1).gameObject);
+            }
+        }
+
         if (TalkingToPlayerHasChanged)
         {
             if (!TalkingToPlayer)
@@ -105,7 +116,7 @@ public class FriendAIPathfinding : MonoBehaviour
             {
                 print("chatted w/ player");
                 TalkingToPlayer = true;
-                Instantiate(ChatPrefab);
+                Instantiate(ChatPrefab, this.transform);
             }
         }
     }
