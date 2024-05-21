@@ -16,25 +16,6 @@ public class PlayerHealth : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-   /* private void OnCollisionEnter2D(Collision2D collision)
-    {
-
-        if (collision.gameObject.CompareTag("Collectible"))
-        {
-            if (collision.gameObject.name == "HealthPickup" && playerHealth >= 2)
-            {
-                playerHealth++;
-                HealthUpdate();
-            }
-
-            Destroy(collision.gameObject);
-        }
-        else
-        {
-            return;
-        }
-    } */
-
    // i funktionen bliver der bestemt hvilket healthbar_UI billede der skal bruges, an på hvor meget liv spilleren har.
     public void HealthUpdate()
     {
