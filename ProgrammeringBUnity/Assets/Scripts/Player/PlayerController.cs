@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
     //Death() funktionen loader scenen "Level" for at starte spillet forfra.
     public void Death()
     {
-        SceneManager.LoadScene("Level");
+        SceneManager.LoadScene(0);
     }
 
     // AnimationUpdate() funktionen styrer hvilken animation der burde spille.
